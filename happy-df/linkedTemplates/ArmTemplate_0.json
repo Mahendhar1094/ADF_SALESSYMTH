@@ -1,0 +1,2703 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "happy-df"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"SqlServer1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServer1'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServer1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/APAC_Hot_Lead')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().Filename",
+							"type": "Expression"
+						},
+						"folderPath": "HotLeed_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Scoop ID",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Types",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Topics",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Description",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Date Published",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Date Updated",
+						"type": "String"
+					},
+					{
+						"name": "Scoops Updated Text",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Url",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Url Text",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Account_Match_Attempt')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "in",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Account Match Attempt.xlsx",
+						"folderPath": "Account_Match_Attempt",
+						"container": "excelinput"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "TPID",
+						"type": "String"
+					},
+					{
+						"name": "Top Parent",
+						"type": "String"
+					},
+					{
+						"name": "Segment Group",
+						"type": "String"
+					},
+					{
+						"name": "SubSegment",
+						"type": "String"
+					},
+					{
+						"name": "Area",
+						"type": "String"
+					},
+					{
+						"name": "SubRegion",
+						"type": "String"
+					},
+					{
+						"name": "Subsidiary",
+						"type": "String"
+					},
+					{
+						"name": "ATU",
+						"type": "String"
+					},
+					{
+						"name": "ATU Group",
+						"type": "String"
+					},
+					{
+						"name": "Industry",
+						"type": "String"
+					},
+					{
+						"name": "Vertical",
+						"type": "String"
+					},
+					{
+						"name": "Match status",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "name_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "domain_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "url_only_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "location_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "phone_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "socialurl_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "ipadd_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "ticker_desc_match",
+						"type": "String"
+					},
+					{
+						"name": "id_desc_match",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy_TPID_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().Filename",
+							"type": "Expression"
+						},
+						"folderPath": "TPID_Requests",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "TPID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Fortune_Metadata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Company_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Fax",
+						"type": "String"
+					},
+					{
+						"name": "Ticker",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "Employee Range",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "String"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "String"
+					},
+					{
+						"name": "Business Model",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Fortune_Metadata_Source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().Filename",
+							"type": "Expression"
+						},
+						"folderPath": "Company_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Fax",
+						"type": "String"
+					},
+					{
+						"name": "Ticker",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "Employee Range",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "String"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "String"
+					},
+					{
+						"name": "Business Model",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Hot_Leads_Metadata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "HotLeed_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Scoop ID",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Types",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Topics",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Description",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Date Published",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Date Updated",
+						"type": "String"
+					},
+					{
+						"name": "Scoops Updated Text",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Url",
+						"type": "String"
+					},
+					{
+						"name": "Scoop Url Text",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Contact ID",
+						"type": "String"
+					},
+					{
+						"name": "Last Name",
+						"type": "String"
+					},
+					{
+						"name": "First Name",
+						"type": "String"
+					},
+					{
+						"name": "Email Address",
+						"type": "String"
+					},
+					{
+						"name": "Job Title",
+						"type": "String"
+					},
+					{
+						"name": "Seniority",
+						"type": "String"
+					},
+					{
+						"name": "Direct Phone Number",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Contact Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Intent_Copy_Data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FileName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"folderPath": "Intent_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Intent ID",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Topic",
+						"type": "String"
+					},
+					{
+						"name": "Category",
+						"type": "String"
+					},
+					{
+						"name": "Score",
+						"type": "String"
+					},
+					{
+						"name": "Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Intent_metadaa')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Intent_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Intent ID",
+						"type": "String"
+					},
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Topic",
+						"type": "String"
+					},
+					{
+						"name": "Category",
+						"type": "String"
+					},
+					{
+						"name": "Score",
+						"type": "String"
+					},
+					{
+						"name": "Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Product_copy_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"Filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().Filename",
+							"type": "Expression"
+						},
+						"folderPath": "Products_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Fax",
+						"type": "String"
+					},
+					{
+						"name": "Ticker",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "Employee Range",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "String"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "String"
+					},
+					{
+						"name": "Business Model",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Products_Metadata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "Products_Data",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "String"
+					},
+					{
+						"name": "Company Name",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Fax",
+						"type": "String"
+					},
+					{
+						"name": "Ticker",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "Employee Range",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "String"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "String"
+					},
+					{
+						"name": "Business Model",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Query Name",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQL_Account_Match_Attempt')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "SalesSmyth_Client_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Account_Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Segment",
+						"type": "varchar"
+					},
+					{
+						"name": "SubSegment",
+						"type": "varchar"
+					},
+					{
+						"name": "Region",
+						"type": "varchar"
+					},
+					{
+						"name": "SubRegion",
+						"type": "varchar"
+					},
+					{
+						"name": "Country",
+						"type": "varchar"
+					},
+					{
+						"name": "Sales_Team_Unit",
+						"type": "varchar"
+					},
+					{
+						"name": "Sales_Unit",
+						"type": "varchar"
+					},
+					{
+						"name": "Industry",
+						"type": "varchar"
+					},
+					{
+						"name": "Vertical",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SalesSmyth_Client_Accounts_Table_RAW"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SQL_ZoomInfo_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "TPID",
+						"type": "varchar"
+					},
+					{
+						"name": "Top Parent",
+						"type": "varchar"
+					},
+					{
+						"name": "Segment Group",
+						"type": "varchar"
+					},
+					{
+						"name": "SubSegment",
+						"type": "varchar"
+					},
+					{
+						"name": "Area",
+						"type": "varchar"
+					},
+					{
+						"name": "SubRegion",
+						"type": "varchar"
+					},
+					{
+						"name": "Subsidiary",
+						"type": "varchar"
+					},
+					{
+						"name": "ATU",
+						"type": "varchar"
+					},
+					{
+						"name": "ATU Group",
+						"type": "varchar"
+					},
+					{
+						"name": "Industry",
+						"type": "varchar"
+					},
+					{
+						"name": "Vertical",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Name",
+						"type": "varchar"
+					},
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "varchar"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "name_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "domain_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "url_only_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "location_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "phone_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "socialurl_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "ipadd_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "ticker_desc_match",
+						"type": "varchar"
+					},
+					{
+						"name": "id_desc_match",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "ZoomInfo_Data_RAW"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServer_Fortune')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Fortune",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Website",
+						"type": "varchar"
+					},
+					{
+						"name": "Founded Year",
+						"type": "varchar"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "varchar"
+					},
+					{
+						"name": "Fax",
+						"type": "varchar"
+					},
+					{
+						"name": "Ticker",
+						"type": "varchar"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Employees",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee Range",
+						"type": "varchar"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "varchar"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "varchar"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "varchar"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "varchar"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "varchar"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "varchar"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "varchar"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "varchar"
+					},
+					{
+						"name": "All Industries",
+						"type": "varchar"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "varchar"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "varchar"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "varchar"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "varchar"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Business Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "varchar"
+					},
+					{
+						"name": "Certification Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "varchar"
+					},
+					{
+						"name": "All Investors",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "varchar"
+					},
+					{
+						"name": "Company City",
+						"type": "varchar"
+					},
+					{
+						"name": "Company State",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Country",
+						"type": "varchar"
+					},
+					{
+						"name": "Full Address",
+						"type": "varchar"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "varchar"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Query Name",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SalesSmyth_FOrtune_Companies_Raw"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServer_Product')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZoomInfo Company ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Product_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Name",
+						"type": "varchar"
+					},
+					{
+						"name": "Website",
+						"type": "varchar"
+					},
+					{
+						"name": "Founded Year",
+						"type": "varchar"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "varchar"
+					},
+					{
+						"name": "Fax",
+						"type": "varchar"
+					},
+					{
+						"name": "Ticker",
+						"type": "varchar"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Employees",
+						"type": "varchar"
+					},
+					{
+						"name": "Employee Range",
+						"type": "varchar"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "varchar"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "varchar"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "varchar"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "varchar"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "varchar"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "varchar"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "varchar"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "varchar"
+					},
+					{
+						"name": "All Industries",
+						"type": "varchar"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "varchar"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "varchar"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "varchar"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "varchar"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "varchar"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Business Model",
+						"type": "varchar"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "varchar"
+					},
+					{
+						"name": "Certification Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "varchar"
+					},
+					{
+						"name": "All Investors",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "varchar"
+					},
+					{
+						"name": "Company City",
+						"type": "varchar"
+					},
+					{
+						"name": "Company State",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Country",
+						"type": "varchar"
+					},
+					{
+						"name": "Full Address",
+						"type": "varchar"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "varchar"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "varchar"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "varchar"
+					},
+					{
+						"name": "Query Name",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SalesSmyth_Products_Data_Raw"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Sql_APAC_Hot_Lead')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZoomInfo_Company_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Type",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Topic",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Description",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Date_Published",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Week_Published",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Month_Published",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Date_Updated",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Updated_Text",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Url",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Url_Text",
+						"type": "varchar"
+					},
+					{
+						"name": "Hot_Lead_Category_",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SalesSmyth_Hot_Leads_RAW"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Sql_Intent')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "ZoomInfo_Company_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Intent_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Intent_Date",
+						"type": "varchar"
+					},
+					{
+						"name": "Intent_Week",
+						"type": "varchar"
+					},
+					{
+						"name": "Intent_Month",
+						"type": "varchar"
+					},
+					{
+						"name": "Topic",
+						"type": "varchar"
+					},
+					{
+						"name": "Category",
+						"type": "varchar"
+					},
+					{
+						"name": "Score",
+						"type": "varchar"
+					},
+					{
+						"name": "Buyer_Strength",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "SalesSmyth_Intent_RAW"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TPID_Metadata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "TPID_Requests",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "TPID",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TPID_SQL_DATA')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "TPID",
+						"type": "varchar"
+					},
+					{
+						"name": "Request_ID",
+						"type": "varchar"
+					},
+					{
+						"name": "Request_date",
+						"type": "date"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "UserRequested_TPID"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		}
+	]
+}
