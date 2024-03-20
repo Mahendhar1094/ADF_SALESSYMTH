@@ -1,0 +1,22 @@
+CREATE TABLE [dbo].[SalesSmyth_Intent_Table](
+	[ZoomInfo_Company_ID] [varchar](max) NULL,
+	[Intent_ID] [varchar](max) NULL,
+	[Intent_Date] [varchar](max) NULL,
+	[Intent_Week] [varchar](max) NULL,
+	[Intent_Month] [varchar](max) NULL,
+	[Topic] [varchar](max) NULL,
+	[Category] [varchar](max) NULL,
+	[Score] [varchar](max) NULL,
+	[Buyer_Strength] [varchar](max) NULL,
+	[SalesSmyth_Topic] [varchar](255) NULL,
+	[Client_Account_ID] [varchar](max) NULL,
+	[Decision Stage] [varchar](max) NULL,
+	[Intent Topic of Interest Salesforce] [int] NULL,
+	[Intent Topic of Interest Salesforce Sales Cloud] [int] NULL,
+	[Intent Topic of Interest Microsoft Dynamics CRM] [int] NULL,
+	[Intent Topic of Interest Salesforce Consulting] [int] NULL,
+	[Intent Topic of Interest Salesforce Marketing Cloud] [int] NULL,
+	[Intent Topic of Interest Salesforce Einstein] [int] NULL,
+	[Match_Tpid] [varchar](max) NULL,
+	[Date] [date] NULL
+)
