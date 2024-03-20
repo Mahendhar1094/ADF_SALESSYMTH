@@ -1,0 +1,2087 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "happy-df"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Zoom_Info_data')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Zoominfo_data.csv",
+						"folderPath": "ZOOM_INFO_DATA",
+						"container": "excelinput"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Record ID",
+						"type": "String"
+					},
+					{
+						"name": "TPID",
+						"type": "String"
+					},
+					{
+						"name": "Company Name2",
+						"type": "String"
+					},
+					{
+						"name": "Subsidiary",
+						"type": "String"
+					},
+					{
+						"name": "Industry",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company ID5",
+						"type": "String"
+					},
+					{
+						"name": "Match status",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company ID7",
+						"type": "String"
+					},
+					{
+						"name": "Company Name8",
+						"type": "String"
+					},
+					{
+						"name": "Website",
+						"type": "String"
+					},
+					{
+						"name": "Founded Year",
+						"type": "String"
+					},
+					{
+						"name": "Company HQ Phone",
+						"type": "String"
+					},
+					{
+						"name": "Fax",
+						"type": "String"
+					},
+					{
+						"name": "Ticker",
+						"type": "String"
+					},
+					{
+						"name": "Revenue (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Revenue Range (in USD)",
+						"type": "String"
+					},
+					{
+						"name": "Employees",
+						"type": "String"
+					},
+					{
+						"name": "Employee Range",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 1",
+						"type": "String"
+					},
+					{
+						"name": "SIC Code 2",
+						"type": "String"
+					},
+					{
+						"name": "SIC Codes",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 1",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Code 2",
+						"type": "String"
+					},
+					{
+						"name": "NAICS Codes",
+						"type": "String"
+					},
+					{
+						"name": "Primary Industry",
+						"type": "String"
+					},
+					{
+						"name": "Primary Sub-Industry",
+						"type": "String"
+					},
+					{
+						"name": "All Industries",
+						"type": "String"
+					},
+					{
+						"name": "All Sub-Industries",
+						"type": "String"
+					},
+					{
+						"name": "Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Secondary Industry Hierarchical Category",
+						"type": "String"
+					},
+					{
+						"name": "Alexa Rank",
+						"type": "String"
+					},
+					{
+						"name": "ZoomInfo Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "LinkedIn Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Facebook Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Twitter Company Profile URL",
+						"type": "String"
+					},
+					{
+						"name": "Ownership Type",
+						"type": "String"
+					},
+					{
+						"name": "Business Model",
+						"type": "String"
+					},
+					{
+						"name": "Certified Active Company",
+						"type": "String"
+					},
+					{
+						"name": "Certification Date",
+						"type": "String"
+					},
+					{
+						"name": "Defunct Company",
+						"type": "String"
+					},
+					{
+						"name": "Total Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Amount (in 000s USD)",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Round",
+						"type": "String"
+					},
+					{
+						"name": "Recent Funding Date",
+						"type": "String"
+					},
+					{
+						"name": "Recent Investors",
+						"type": "String"
+					},
+					{
+						"name": "All Investors",
+						"type": "String"
+					},
+					{
+						"name": "Company Street Address",
+						"type": "String"
+					},
+					{
+						"name": "Company City",
+						"type": "String"
+					},
+					{
+						"name": "Company State",
+						"type": "String"
+					},
+					{
+						"name": "Company Zip Code",
+						"type": "String"
+					},
+					{
+						"name": "Company Country",
+						"type": "String"
+					},
+					{
+						"name": "Full Address",
+						"type": "String"
+					},
+					{
+						"name": "Number of Locations",
+						"type": "String"
+					},
+					{
+						"name": "Company Is Acquired",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Ultimate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Company ID (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Entity Name (Immediate Parent)",
+						"type": "String"
+					},
+					{
+						"name": "Relationship (Immediate Parent)",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Account Match Attempt')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Account_Match_Attempt",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"additionalColumns": [
+									{
+										"name": "SalesSmyth_Client_ID",
+										"value": "1000001"
+									}
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "SqlServerSink",
+								"writeBehavior": "upsert",
+								"upsertSettings": {
+									"useTempDB": false,
+									"keys": [
+										"Client_Account_Id"
+									],
+									"interimSchemaName": "dbo"
+								},
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "TPID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Client_Account_Id",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SalesSmyth_Client_ID",
+											"type": "String"
+										},
+										"sink": {
+											"name": "SalesSmyth_Client_ID",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "HQ DS Flag",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "HQ_DS Flag",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Top Parent",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Account_Name",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Segment Group",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Segment",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SubSegment",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SubSegment",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Area",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Region",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SubRegion",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SubRegion",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Subsidiary",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Country",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ATU",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Sales_Team_Unit",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ATU Group",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Sales_Unit",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Industry",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Industry",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Vertical",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Vertical",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Account_Match_Attempt",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQL_Account_Match_Attempt",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-09T05:21:25Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Fortune_Companies')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get  Fortune_Companies_Metadata",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Fortune_Metadata",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "Foreach file",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get  Fortune_Companies_Metadata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get  Fortune_Companies_Metadata').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Fortune data",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "Fortune",
+													"value": "$$FILENAME"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "SqlServerSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "Fortune_Metadata_Source",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "SqlServer_Fortune",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Delete Activity",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Copy Fortune data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Fortune_Metadata_Source",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"wildcardFileName": "Fortune_*",
+											"enablePartitionDiscovery": false
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-20T02:31:43Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Hot_Leads')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get  Hot_Leads_Metadata",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Hot_Leads_Metadata",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "Foreach file",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get  Hot_Leads_Metadata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get  Hot_Leads_Metadata').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Hot_Leads_data",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "Topic_name",
+													"value": "$$FILENAME"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "SqlServerSink",
+											"writeBehavior": "upsert",
+											"upsertSettings": {
+												"useTempDB": true,
+												"keys": [
+													"Scoop ID",
+													"ZoomInfo Company ID"
+												]
+											},
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "APAC_Hot_Lead",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Sql_APAC_Hot_Lead",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Delete Activity",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Copy Hot_Leads_data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "APAC_Hot_Lead",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": "@item().name"
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"wildcardFileName": "*Hot_Leads",
+											"enablePartitionDiscovery": false
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-20T04:21:55Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Intent')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get  intent_Metadata",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Intent_metadaa",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "Foreach file",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get  intent_Metadata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get  intent_Metadata').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Intent data",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "Topic_name",
+													"value": "$$FILENAME"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "SqlServerSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "Intent_Copy_Data",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@item().Name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Sql_Intent",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Delete Activity",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Copy Intent data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Intent_Copy_Data",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": "@item().name"
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"wildcardFileName": "Salesforce_*",
+											"enablePartitionDiscovery": false
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-12-22T04:58:44Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Products')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get  Products_Metadata",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Products_Metadata",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "Foreach file",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get  Products_Metadata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get  Products_Metadata').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy Fortune data",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "Product_Type",
+													"value": "$$FILENAME"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "SqlServerSink",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "Product_copy_data",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "SqlServer_Product",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Delete Activity",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Copy Fortune data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Product_copy_data",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": "@item().name"
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"wildcardFileName": "COMPANY_*",
+											"enablePartitionDiscovery": false
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-20T04:16:39Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Request_TPID')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get  TPID_Metadata",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "TPID_Metadata",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					},
+					{
+						"name": "Foreach file",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get  TPID_Metadata",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get  TPID_Metadata').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy TPID_Data",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "DelimitedTextSource",
+											"additionalColumns": [
+												{
+													"name": "Request_ID",
+													"value": "$$FILENAME"
+												}
+											],
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											},
+											"formatSettings": {
+												"type": "DelimitedTextReadSettings"
+											}
+										},
+										"sink": {
+											"type": "SqlServerSink",
+											"writeBehavior": "upsert",
+											"upsertSettings": {
+												"useTempDB": true,
+												"keys": [
+													"Request_ID"
+												]
+											},
+											"sqlWriterUseTableLock": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "Copy_TPID_Data",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": {
+													"value": "@item().Name",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "TPID_SQL_DATA",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Delete Activity",
+									"type": "Delete",
+									"dependsOn": [
+										{
+											"activity": "Copy TPID_Data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"dataset": {
+											"referenceName": "Copy_TPID_Data",
+											"type": "DatasetReference",
+											"parameters": {
+												"Filename": "@item().name"
+											}
+										},
+										"enableLogging": false,
+										"storeSettings": {
+											"type": "AzureBlobStorageReadSettings",
+											"recursive": true,
+											"wildcardFileName": "10000001-*.csv",
+											"enablePartitionDiscovery": false
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-22T16:04:27Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ZoomInfo_Data')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ZoomInfo_Data",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "SqlServerSink",
+								"writeBehavior": "upsert",
+								"upsertSettings": {
+									"useTempDB": true,
+									"keys": [
+										"TPID"
+									]
+								},
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "TPID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "TPID",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company Name",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company Name",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ZoomInfo Company ID",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ZoomInfo Company ID",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Website",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Website",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Founded Year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Founded Year",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company HQ Phone",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company HQ Phone",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Fax",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Fax",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Ticker",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Ticker",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Revenue (in 000s USD)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Revenue (in 000s USD)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Revenue Range (in USD)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Revenue Range (in USD)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Employees",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Employees",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Employee Range",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Employee Range",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SIC Code 1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SIC Code 1",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SIC Code 2",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SIC Code 2",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "SIC Codes",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "SIC Codes",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NAICS Code 1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NAICS Code 1",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NAICS Code 2",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NAICS Code 2",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "NAICS Codes",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NAICS Codes",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Primary Industry",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Primary Industry",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Primary Sub-Industry",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Primary Sub-Industry",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "All Industries",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "All Industries",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "All Sub-Industries",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "All Sub-Industries",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Industry Hierarchical Category",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Industry Hierarchical Category",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Secondary Industry Hierarchical Category",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Secondary Industry Hierarchical Category",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Alexa Rank",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Alexa Rank",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "ZoomInfo Company Profile URL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ZoomInfo Company Profile URL",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "LinkedIn Company Profile URL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "LinkedIn Company Profile URL",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Facebook Company Profile URL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Facebook Company Profile URL",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Twitter Company Profile URL",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Twitter Company Profile URL",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Ownership Type",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Ownership Type",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Business Model",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Business Model",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Certified Active Company",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Certified Active Company",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Certification Date",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Certification Date",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Defunct Company",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Defunct Company",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Total Funding Amount (in 000s USD)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Total Funding Amount (in 000s USD)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Recent Funding Amount (in 000s USD)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Recent Funding Amount (in 000s USD)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Recent Funding Round",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Recent Funding Round",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Recent Funding Date",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Recent Funding Date",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Recent Investors",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Recent Investors",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "All Investors",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "All Investors",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company Street Address",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company Street Address",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company City",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company City",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company State",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company State",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company Zip Code",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company Zip Code",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company Country",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company Country",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Full Address",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Full Address",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Number of Locations",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Number of Locations",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company Is Acquired",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company Is Acquired",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company ID (Ultimate Parent)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company ID (Ultimate Parent)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Entity Name (Ultimate Parent)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Entity Name (Ultimate Parent)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Company ID (Immediate Parent)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Company ID (Immediate Parent)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Entity Name (Immediate Parent)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Entity Name (Immediate Parent)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Relationship (Immediate Parent)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Relationship (Immediate Parent)",
+											"type": "String",
+											"physicalType": "varchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Zoom_Info_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SQL_ZoomInfo_data",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-11-30T11:44:26Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Zoom_Info_data')]"
+			]
+		}
+	]
+}
