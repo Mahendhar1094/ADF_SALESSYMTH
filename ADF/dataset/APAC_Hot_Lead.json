@@ -1,0 +1,74 @@
+{
+	"name": "APAC_Hot_Lead",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Filename",
+					"type": "Expression"
+				},
+				"folderPath": "HotLeed_Data",
+				"container": "excelinput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Scoop ID",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Types",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Topics",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Description",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Date Published",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Date Updated",
+				"type": "String"
+			},
+			{
+				"name": "Scoops Updated Text",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Url",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Url Text",
+				"type": "String"
+			},
+			{
+				"name": "ZoomInfo Company ID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "happy-df",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "e1d1047a-78c7-4045-98fb-20bc34bfd7b9",
+		"tenantId": "d7a3ff8f-ea51-48f5-b356-0f1afd29d233"
+	}
+}

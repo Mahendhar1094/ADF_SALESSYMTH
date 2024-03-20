@@ -1,0 +1,120 @@
+{
+	"name": "Account_Match_Attempt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "in",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Account Match Attempt.xlsx",
+				"folderPath": "Account_Match_Attempt",
+				"container": "excelinput"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "TPID",
+				"type": "String"
+			},
+			{
+				"name": "Top Parent",
+				"type": "String"
+			},
+			{
+				"name": "Segment Group",
+				"type": "String"
+			},
+			{
+				"name": "SubSegment",
+				"type": "String"
+			},
+			{
+				"name": "Area",
+				"type": "String"
+			},
+			{
+				"name": "SubRegion",
+				"type": "String"
+			},
+			{
+				"name": "Subsidiary",
+				"type": "String"
+			},
+			{
+				"name": "ATU",
+				"type": "String"
+			},
+			{
+				"name": "ATU Group",
+				"type": "String"
+			},
+			{
+				"name": "Industry",
+				"type": "String"
+			},
+			{
+				"name": "Vertical",
+				"type": "String"
+			},
+			{
+				"name": "Match status",
+				"type": "String"
+			},
+			{
+				"name": "Company Name",
+				"type": "String"
+			},
+			{
+				"name": "ZoomInfo Company ID",
+				"type": "String"
+			},
+			{
+				"name": "ZoomInfo Company Profile URL",
+				"type": "String"
+			},
+			{
+				"name": "name_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "domain_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "url_only_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "location_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "phone_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "socialurl_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "ipadd_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "ticker_desc_match",
+				"type": "String"
+			},
+			{
+				"name": "id_desc_match",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

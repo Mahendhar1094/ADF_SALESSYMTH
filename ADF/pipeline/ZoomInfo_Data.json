@@ -1,0 +1,706 @@
+{
+	"name": "ZoomInfo_Data",
+	"properties": {
+		"activities": [
+			{
+				"name": "ZoomInfo_Data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true,
+							"keys": [
+								"TPID"
+							]
+						},
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "TPID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "TPID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company Name",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ZoomInfo Company ID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZoomInfo Company ID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Website",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Website",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Founded Year",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Founded Year",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company HQ Phone",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company HQ Phone",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Fax",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fax",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Ticker",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Ticker",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Revenue (in 000s USD)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Revenue (in 000s USD)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Revenue Range (in USD)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Revenue Range (in USD)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Employees",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Employees",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Employee Range",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Employee Range",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SIC Code 1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SIC Code 1",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SIC Code 2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SIC Code 2",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "SIC Codes",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SIC Codes",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NAICS Code 1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NAICS Code 1",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NAICS Code 2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NAICS Code 2",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NAICS Codes",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NAICS Codes",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Primary Industry",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Primary Industry",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Primary Sub-Industry",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Primary Sub-Industry",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "All Industries",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "All Industries",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "All Sub-Industries",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "All Sub-Industries",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Industry Hierarchical Category",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Industry Hierarchical Category",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Secondary Industry Hierarchical Category",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Secondary Industry Hierarchical Category",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Alexa Rank",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Alexa Rank",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ZoomInfo Company Profile URL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ZoomInfo Company Profile URL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "LinkedIn Company Profile URL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LinkedIn Company Profile URL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Facebook Company Profile URL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Facebook Company Profile URL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Twitter Company Profile URL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Twitter Company Profile URL",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Ownership Type",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Ownership Type",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Business Model",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Business Model",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Certified Active Company",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Certified Active Company",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Certification Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Certification Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Defunct Company",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Defunct Company",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Total Funding Amount (in 000s USD)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Total Funding Amount (in 000s USD)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Recent Funding Amount (in 000s USD)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Recent Funding Amount (in 000s USD)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Recent Funding Round",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Recent Funding Round",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Recent Funding Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Recent Funding Date",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Recent Investors",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Recent Investors",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "All Investors",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "All Investors",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company Street Address",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company Street Address",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company City",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company City",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company State",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company State",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company Zip Code",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company Zip Code",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company Country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company Country",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Full Address",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Full Address",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Number of Locations",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Number of Locations",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company Is Acquired",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company Is Acquired",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company ID (Ultimate Parent)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company ID (Ultimate Parent)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Entity Name (Ultimate Parent)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Entity Name (Ultimate Parent)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Company ID (Immediate Parent)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Company ID (Immediate Parent)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Entity Name (Immediate Parent)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Entity Name (Immediate Parent)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Relationship (Immediate Parent)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Relationship (Immediate Parent)",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Zoom_Info_data",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SQL_ZoomInfo_data",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-11-30T11:44:26Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

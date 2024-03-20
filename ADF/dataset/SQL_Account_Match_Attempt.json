@@ -1,0 +1,62 @@
+{
+	"name": "SQL_Account_Match_Attempt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "SalesSmyth_Client_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Account_Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Segment",
+				"type": "varchar"
+			},
+			{
+				"name": "SubSegment",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "SubRegion",
+				"type": "varchar"
+			},
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "Sales_Team_Unit",
+				"type": "varchar"
+			},
+			{
+				"name": "Sales_Unit",
+				"type": "varchar"
+			},
+			{
+				"name": "Industry",
+				"type": "varchar"
+			},
+			{
+				"name": "Vertical",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesSmyth_Client_Accounts_Table_RAW"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

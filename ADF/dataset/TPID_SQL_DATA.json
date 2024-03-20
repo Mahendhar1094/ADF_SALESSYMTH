@@ -1,0 +1,30 @@
+{
+	"name": "TPID_SQL_DATA",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TPID",
+				"type": "varchar"
+			},
+			{
+				"name": "Request_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Request_date",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "UserRequested_TPID"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

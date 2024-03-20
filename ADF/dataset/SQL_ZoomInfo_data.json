@@ -1,0 +1,110 @@
+{
+	"name": "SQL_ZoomInfo_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "TPID",
+				"type": "varchar"
+			},
+			{
+				"name": "Top Parent",
+				"type": "varchar"
+			},
+			{
+				"name": "Segment Group",
+				"type": "varchar"
+			},
+			{
+				"name": "SubSegment",
+				"type": "varchar"
+			},
+			{
+				"name": "Area",
+				"type": "varchar"
+			},
+			{
+				"name": "SubRegion",
+				"type": "varchar"
+			},
+			{
+				"name": "Subsidiary",
+				"type": "varchar"
+			},
+			{
+				"name": "ATU",
+				"type": "varchar"
+			},
+			{
+				"name": "ATU Group",
+				"type": "varchar"
+			},
+			{
+				"name": "Industry",
+				"type": "varchar"
+			},
+			{
+				"name": "Vertical",
+				"type": "varchar"
+			},
+			{
+				"name": "Company Name",
+				"type": "varchar"
+			},
+			{
+				"name": "ZoomInfo Company ID",
+				"type": "varchar"
+			},
+			{
+				"name": "ZoomInfo Company Profile URL",
+				"type": "varchar"
+			},
+			{
+				"name": "name_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "domain_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "url_only_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "location_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "phone_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "socialurl_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "ipadd_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "ticker_desc_match",
+				"type": "varchar"
+			},
+			{
+				"name": "id_desc_match",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "ZoomInfo_Data_RAW"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

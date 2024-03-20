@@ -1,0 +1,230 @@
+{
+	"name": "SqlServer_Product",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ZoomInfo Company ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Product_Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Company Name",
+				"type": "varchar"
+			},
+			{
+				"name": "Website",
+				"type": "varchar"
+			},
+			{
+				"name": "Founded Year",
+				"type": "varchar"
+			},
+			{
+				"name": "Company HQ Phone",
+				"type": "varchar"
+			},
+			{
+				"name": "Fax",
+				"type": "varchar"
+			},
+			{
+				"name": "Ticker",
+				"type": "varchar"
+			},
+			{
+				"name": "Revenue (in 000s USD)",
+				"type": "varchar"
+			},
+			{
+				"name": "Revenue Range (in USD)",
+				"type": "varchar"
+			},
+			{
+				"name": "Employees",
+				"type": "varchar"
+			},
+			{
+				"name": "Employee Range",
+				"type": "varchar"
+			},
+			{
+				"name": "SIC Code 1",
+				"type": "varchar"
+			},
+			{
+				"name": "SIC Code 2",
+				"type": "varchar"
+			},
+			{
+				"name": "SIC Codes",
+				"type": "varchar"
+			},
+			{
+				"name": "NAICS Code 1",
+				"type": "varchar"
+			},
+			{
+				"name": "NAICS Code 2",
+				"type": "varchar"
+			},
+			{
+				"name": "NAICS Codes",
+				"type": "varchar"
+			},
+			{
+				"name": "Primary Industry",
+				"type": "varchar"
+			},
+			{
+				"name": "Primary Sub-Industry",
+				"type": "varchar"
+			},
+			{
+				"name": "All Industries",
+				"type": "varchar"
+			},
+			{
+				"name": "All Sub-Industries",
+				"type": "varchar"
+			},
+			{
+				"name": "Industry Hierarchical Category",
+				"type": "varchar"
+			},
+			{
+				"name": "Secondary Industry Hierarchical Category",
+				"type": "varchar"
+			},
+			{
+				"name": "Alexa Rank",
+				"type": "varchar"
+			},
+			{
+				"name": "ZoomInfo Company Profile URL",
+				"type": "varchar"
+			},
+			{
+				"name": "LinkedIn Company Profile URL",
+				"type": "varchar"
+			},
+			{
+				"name": "Facebook Company Profile URL",
+				"type": "varchar"
+			},
+			{
+				"name": "Twitter Company Profile URL",
+				"type": "varchar"
+			},
+			{
+				"name": "Ownership Type",
+				"type": "varchar"
+			},
+			{
+				"name": "Business Model",
+				"type": "varchar"
+			},
+			{
+				"name": "Certified Active Company",
+				"type": "varchar"
+			},
+			{
+				"name": "Certification Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Total Funding Amount (in 000s USD)",
+				"type": "varchar"
+			},
+			{
+				"name": "Recent Funding Amount (in 000s USD)",
+				"type": "varchar"
+			},
+			{
+				"name": "Recent Funding Round",
+				"type": "varchar"
+			},
+			{
+				"name": "Recent Funding Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Recent Investors",
+				"type": "varchar"
+			},
+			{
+				"name": "All Investors",
+				"type": "varchar"
+			},
+			{
+				"name": "Company Street Address",
+				"type": "varchar"
+			},
+			{
+				"name": "Company City",
+				"type": "varchar"
+			},
+			{
+				"name": "Company State",
+				"type": "varchar"
+			},
+			{
+				"name": "Company Zip Code",
+				"type": "varchar"
+			},
+			{
+				"name": "Company Country",
+				"type": "varchar"
+			},
+			{
+				"name": "Full Address",
+				"type": "varchar"
+			},
+			{
+				"name": "Number of Locations",
+				"type": "varchar"
+			},
+			{
+				"name": "Company Is Acquired",
+				"type": "varchar"
+			},
+			{
+				"name": "Company ID (Ultimate Parent)",
+				"type": "varchar"
+			},
+			{
+				"name": "Entity Name (Ultimate Parent)",
+				"type": "varchar"
+			},
+			{
+				"name": "Company ID (Immediate Parent)",
+				"type": "varchar"
+			},
+			{
+				"name": "Entity Name (Immediate Parent)",
+				"type": "varchar"
+			},
+			{
+				"name": "Relationship (Immediate Parent)",
+				"type": "varchar"
+			},
+			{
+				"name": "Query Name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesSmyth_Products_Data_Raw"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

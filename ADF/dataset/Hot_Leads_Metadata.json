@@ -1,0 +1,221 @@
+{
+	"name": "Hot_Leads_Metadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "HotLeed_Data",
+				"container": "excelinput"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Scoop ID",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Types",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Topics",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Description",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Date Published",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Date Updated",
+				"type": "String"
+			},
+			{
+				"name": "Scoops Updated Text",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Url",
+				"type": "String"
+			},
+			{
+				"name": "Scoop Url Text",
+				"type": "String"
+			},
+			{
+				"name": "ZoomInfo Company ID",
+				"type": "String"
+			},
+			{
+				"name": "Company Name",
+				"type": "String"
+			},
+			{
+				"name": "Website",
+				"type": "String"
+			},
+			{
+				"name": "Founded Year",
+				"type": "String"
+			},
+			{
+				"name": "Revenue (in 000s USD)",
+				"type": "String"
+			},
+			{
+				"name": "Primary Industry",
+				"type": "String"
+			},
+			{
+				"name": "Primary Sub-Industry",
+				"type": "String"
+			},
+			{
+				"name": "All Industries",
+				"type": "String"
+			},
+			{
+				"name": "All Sub-Industries",
+				"type": "String"
+			},
+			{
+				"name": "Industry Hierarchical Category",
+				"type": "String"
+			},
+			{
+				"name": "Secondary Industry Hierarchical Category",
+				"type": "String"
+			},
+			{
+				"name": "Alexa Rank",
+				"type": "String"
+			},
+			{
+				"name": "LinkedIn Company Profile URL",
+				"type": "String"
+			},
+			{
+				"name": "Facebook Company Profile URL",
+				"type": "String"
+			},
+			{
+				"name": "Twitter Company Profile URL",
+				"type": "String"
+			},
+			{
+				"name": "Employees",
+				"type": "String"
+			},
+			{
+				"name": "Certified Active Company",
+				"type": "String"
+			},
+			{
+				"name": "Certification Date",
+				"type": "String"
+			},
+			{
+				"name": "Total Funding Amount (in 000s USD)",
+				"type": "String"
+			},
+			{
+				"name": "Recent Funding Amount (in 000s USD)",
+				"type": "String"
+			},
+			{
+				"name": "Recent Funding Round",
+				"type": "String"
+			},
+			{
+				"name": "Recent Funding Date",
+				"type": "String"
+			},
+			{
+				"name": "Recent Investors",
+				"type": "String"
+			},
+			{
+				"name": "All Investors",
+				"type": "String"
+			},
+			{
+				"name": "ZoomInfo Contact ID",
+				"type": "String"
+			},
+			{
+				"name": "Last Name",
+				"type": "String"
+			},
+			{
+				"name": "First Name",
+				"type": "String"
+			},
+			{
+				"name": "Email Address",
+				"type": "String"
+			},
+			{
+				"name": "Job Title",
+				"type": "String"
+			},
+			{
+				"name": "Seniority",
+				"type": "String"
+			},
+			{
+				"name": "Direct Phone Number",
+				"type": "String"
+			},
+			{
+				"name": "LinkedIn Contact Profile URL",
+				"type": "String"
+			},
+			{
+				"name": "Company Street Address",
+				"type": "String"
+			},
+			{
+				"name": "Company City",
+				"type": "String"
+			},
+			{
+				"name": "Company State",
+				"type": "String"
+			},
+			{
+				"name": "Company Zip Code",
+				"type": "String"
+			},
+			{
+				"name": "Company Country",
+				"type": "String"
+			},
+			{
+				"name": "Full Address",
+				"type": "String"
+			},
+			{
+				"name": "Number of Locations",
+				"type": "String"
+			},
+			{
+				"name": "Query Name",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

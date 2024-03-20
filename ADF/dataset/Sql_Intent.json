@@ -1,0 +1,54 @@
+{
+	"name": "Sql_Intent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "ZoomInfo_Company_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Intent_ID",
+				"type": "varchar"
+			},
+			{
+				"name": "Intent_Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Intent_Week",
+				"type": "varchar"
+			},
+			{
+				"name": "Intent_Month",
+				"type": "varchar"
+			},
+			{
+				"name": "Topic",
+				"type": "varchar"
+			},
+			{
+				"name": "Category",
+				"type": "varchar"
+			},
+			{
+				"name": "Score",
+				"type": "varchar"
+			},
+			{
+				"name": "Buyer_Strength",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesSmyth_Intent_RAW"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
